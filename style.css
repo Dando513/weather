@@ -1,6 +1,9 @@
 h2 {
     background-color: black;
-    color: lawngreen;
+    color: blue;
     font-style: initial;
     font-size: 2rem;
+}
+aside {
+    background-color: lightgrey;
 }

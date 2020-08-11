@@ -18,7 +18,7 @@
 
 
     <aside class="col-3">
-        <h5 class="navbar-brand" href="#">Seach for a City</h5>
+        <h5 class="navbar-brand" href="#">Search for a City</h5>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,21 +29,28 @@
             <button id ="searchButton" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           <!-- </form> -->
         </div>
+        <ul class="list-group">
+           </ul>
+    
     </aside>
 
     <main class="col-9">
         <div class="row container">
-            <div class="card"></div>
-            
+            <div class="card" style="width: 18rem"id="todayForecast">
+                <div class="card-header"id="date"></div>
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text"id="temp"></p>
+                  <p class="card-text"id="humidity"></p>
+                  <p class="card-text"id="wind"></p>
+                  <p class="card-text"id="uv"></p>
+                </div>
+              </div>
         </div>
         <div class="row container">
-            <div class="card-deck"></div>
-            <p class="date"></p>
-            <p class="weather-icon"></p>
-            <p class="temp"></p>
-            <p class="humidity"></p>
+            <div class="card-deck">
+               </div>
         </div>
-
         <!-- 9f01f172f115da48d597608ddd41cc38 -->
 
     </main>
