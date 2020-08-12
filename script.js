@@ -14,7 +14,7 @@ function addCities() {
         $(".list-group").append('<li class="list-group-item">' + pastCities[i] + '</li>')
     }
     $("li").on("click", function () {
-        var cityInput = $("this").text()
+        var cityInput = $(this).text()
         runSearch(cityInput)
     })
 }
@@ -88,7 +88,7 @@ function runSearch(city) {
                     var date = new Date(results.current.dt * 1000)
                     if (city != "Edison") { pastCities.push(city) }
                     addCities()
-                    addCards()
+                    // addCards()
                     localStorage.setItem("pastCities", JSON.stringify(pastCities))
                     $("#date").text(date.toLocaleDateString())
                     $("#temp").text("Temp: " + results.current.temp)
