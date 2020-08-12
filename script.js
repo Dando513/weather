@@ -5,6 +5,7 @@ runSearch(pastCities[0])
 $("#searchButton").on("click", function () {
     var cityInput = $("#city").val()
     runSearch(cityInput)
+    cardDeck()
 })
 $("li").on("click", function () {
     var cityInput = $("this").text()
@@ -26,12 +27,12 @@ function addCities() {
 
 function cardDeck() {
     $.ajax({
-        url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=9f01f172f115da48d597608ddd41cc38",
+        url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=a54f338ec1298e24c2090e8c7230e777",
 
         success: function (res) {
             console.log(res)
             $.ajax({
-                url: "https://api.openweathermap.org/data/2.5/onecall?lat=" + res.coord.lat + "&lon=" + res.coord.lon + "&exclude=hourly,minutely&appid=9f01f172f115da48d597608ddd41cc38",
+                url: "https://api.openweathermap.org/data/2.5/onecall?lat=" + res.coord.lat + "&lon=" + res.coord.lon + "&exclude=hourly,minutely&appid=a54f338ec1298e24c2090e8c7230e777",
                 success: function (results) {
                     console.log(results)
 
@@ -46,7 +47,7 @@ function cardDeck() {
                         $("#uv").text("UV: " + results[i].daily.uvi)
                     
                         var weatherImage = $("<img>");
-                        weatherImage..attr("src", "http://openweathermap.org/img/wn/" + results[i].daily.icon + "@2x.png")
+                        weatherImage.attr("src", "http://openweathermap.org/img/wn/" + results[i].daily.icon + "@2x.png")
                         var date= $("<p>").text(date.toLocaleDateString());
                         
                         var temp= $("<p>").text("Temp: "+results[i].daily.temp);
@@ -73,12 +74,12 @@ function cardDeck() {
 
 function runSearch(city) {
     $.ajax({
-        url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=9f01f172f115da48d597608ddd41cc38",
+        url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=9d57db3df74e32d1a8eab73ae5f53920",
 
         success: function (res) {
             console.log(res)
             $.ajax({
-                url: "https://api.openweathermap.org/data/2.5/onecall?lat=" + res.coord.lat + "&lon=" + res.coord.lon + "&exclude=hourly,minutely&appid=9f01f172f115da48d597608ddd41cc38",
+                url: "https://api.openweathermap.org/data/2.5/onecall?lat=" + res.coord.lat + "&lon=" + res.coord.lon + "&exclude=hourly,minutely&appid=9d57db3df74e32d1a8eab73ae5f53920",
                 success: function (results) {
                     console.log(results)
 
