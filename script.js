@@ -7,15 +7,16 @@ $("#searchButton").on("click", function () {
     runSearch(cityInput)
     cardDeck()
 })
-$("li").on("click", function () {
-    var cityInput = $("this").text()
-    runSearch(cityInput)
-})
+
 function addCities() {
     $(".list-group").empty()
     for (i = 0; i < pastCities.length; i++) {
         $(".list-group").append('<li class="list-group-item">' + pastCities[i] + '</li>')
     }
+    $("li").on("click", function () {
+        var cityInput = $("this").text()
+        runSearch(cityInput)
+    })
 }
 
 // Create new function with new call
