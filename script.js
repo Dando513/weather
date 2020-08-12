@@ -46,7 +46,7 @@ function cardDeck() {
                         $("#uv").text("UV: " + results[i].daily.uvi)
                     
                         var weatherImage = $("<img>");
-                        weatherImage.attr("src", results[i].daily.weather.icon);
+                        weatherImage..attr("src", "http://openweathermap.org/img/wn/" + results[i].daily.icon + "@2x.png")
                         var date= $("<p>").text(date.toLocaleDateString());
                         
                         var temp= $("<p>").text("Temp: "+results[i].daily.temp);
