@@ -28,6 +28,7 @@ function addCities() {
 // than your going to append new card to the $(#days)
 
 function cardDeck(results) {
+    $("#days").empty()
     for (i = 1; i < 6; i++) {
         var newCard = $("<div>");
         // $("#temp").text("Temp: " + results[i].daily.temp)
@@ -63,7 +64,7 @@ function runSearch(city) {
                 success: function (results) {
                     console.log(results)
                     console.log(res.name)
-                    
+
                     $("#todayForecast img").attr("src", "http://openweathermap.org/img/wn/" + results.current.weather[0].icon + "@2x.png")
                     var date = new Date(results.current.dt * 1000)
                     if (city != "Edison") { pastCities.push(city) }
