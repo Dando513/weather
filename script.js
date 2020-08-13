@@ -5,13 +5,14 @@ runSearch(pastCities[0])
 $("#searchButton").on("click", function () {
     var cityInput = $("#city").val()
     runSearch(cityInput)
-    cardDeck()
+ 
 })
 
 function addCities() {
     $(".list-group").empty()
     for (i = 0; i < pastCities.length; i++) {
-        $(".list-group").append('<li class="list-group-item">' + pastCities[i] + '</li>')
+        
+    $(".list-group").append('<li class="list-group-item">' + pastCities[i] + '</li>')
     }
     $("li").on("click", function () {
         var cityInput = $(this).text()
@@ -61,7 +62,8 @@ function runSearch(city) {
                 url: "https://api.openweathermap.org/data/2.5/onecall?lat=" + res.coord.lat + "&lon=" + res.coord.lon + "&exclude=hourly,minutely&appid=9f01f172f115da48d597608ddd41cc38",
                 success: function (results) {
                     console.log(results)
-
+                    console.log(res.name)
+                    
                     $("#todayForecast img").attr("src", "http://openweathermap.org/img/wn/" + results.current.weather[0].icon + "@2x.png")
                     var date = new Date(results.current.dt * 1000)
                     if (city != "Edison") { pastCities.push(city) }
@@ -69,10 +71,12 @@ function runSearch(city) {
                     cardDeck(results)
                     localStorage.setItem("pastCities", JSON.stringify(pastCities))
                     $("#date").text(date.toLocaleDateString())
+                    $("#city").text("City: "+ res.name)
                     $("#temp").text("Temp: " + results.current.temp)
                     $("#humidity").text("Humidity: " + results.current.humidity)
                     $("#wind").text("Wind Speed: " + results.current.wind_speed)
                     $("#uv").text("UV: " + results.current.uvi)
+                    $("#days").append(newCard);
                 }
             })
 

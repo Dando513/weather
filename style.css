@@ -1,9 +1,13 @@
 h2 {
     background-color: black;
-    color: blue;
+    color: rgba(30, 156, 5, 0.623);
     font-style: initial;
     font-size: 2rem;
 }
 aside {
-    background-color: lightgrey;
+    background-color: lightgreen;
+}
+
+main {
+    background-color: lightgrey
 }
