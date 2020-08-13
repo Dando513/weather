@@ -40,32 +40,24 @@ function cardDeck() {
                     for (i = 0; i < 5; i++) {
                         
                         var newCard = $("<div>");
-                        $("#date").text(date.toLocaleDateString())
-                       
-                        $("#temp").text("Temp: " + results[i].daily.temp)
-                        $("#humidity").text("Humidity: " + results[i].daily.humidity)
-                        $("#wind").text("Wind Speed: " + results[i].daily.wind_speed)
-                        $("#uv").text("UV: " + results[i].daily.uvi)
-                    
+                        // $("#temp").text("Temp: " + results[i].daily.temp)
+                        // $("#humidity").text("Humidity: " + results[i].daily.humidity)
+                        // $("#wind").text("Wind Speed: " + results[i].daily.wind_speed)
+                        // $("#uv").text("UV: " + results[i].daily.uvi)
                         var weatherImage = $("<img>");
-                        weatherImage.attr("src", "http://openweathermap.org/img/wn/" + results[i].daily.icon + "@2x.png")
-                        var date= $("<p>").text(date.toLocaleDateString());
-                        
-                        var temp= $("<p>").text("Temp: "+results[i].daily.temp);
-                        var humidity= $("<p>").text("Humidity: "+results[i].daily.humidity);
-                        var wind= $("<p>").text("Wind: "+results[i].daily.wind);
-                        var uv= $("<p>").text("UV: "+results[i].daily.uvi);
-
-
-                        newCard.append(date);
+                        weatherImage.attr("src", "http://openweathermap.org/img/wn/" + results.daily[i].icon + "@2x.png")
+                        var date = new Date(results.daily[i].dt * 1000)
+                        var dateP= $("<p>").text(date.toLocaleDateString());
+                        var temp= $("<p>").text("Temp: "+results.daily[i].temp.max);
+                        var humidity= $("<p>").text("Humidity: "+results.daily[i].humidity);
+                        var wind= $("<p>").text("Wind: "+results.daily[i].wind);
+                        var uv= $("<p>").text("UV: "+results.daily[i].uvi);
+                        newCard.append(dateP);
                         newCard.append(temp)
                         newCard.append(humidity);
                         newCard.append(wind);
                         newCard.append(uv);
-                        
                         $("#days").append(newCard);
-
-                    }
                 }
             })
         }
@@ -88,7 +80,7 @@ function runSearch(city) {
                     var date = new Date(results.current.dt * 1000)
                     if (city != "Edison") { pastCities.push(city) }
                     addCities()
-                    // addCards()
+                    cardDeck
                     localStorage.setItem("pastCities", JSON.stringify(pastCities))
                     $("#date").text(date.toLocaleDateString())
                     $("#temp").text("Temp: " + results.current.temp)
