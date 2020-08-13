@@ -26,44 +26,30 @@ function addCities() {
 // create elements for the card
 // than your going to append new card to the $(#days)
 
-function cardDeck() {
-    $.ajax({
-        url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=9f01f172f115da48d597608ddd41cc38",
-
-        success: function (res) {
-            console.log(res)
-            $.ajax({
-                url: "https://api.openweathermap.org/data/2.5/onecall?lat=" + res.coord.lat + "&lon=" + res.coord.lon + "&exclude=hourly,minutely&appid=9f01f172f115da48d597608ddd41cc38",
-                success: function (results) {
-                    console.log(results)
-
-                    for (i = 0; i < 5; i++) {
-                        
-                        var newCard = $("<div>");
-                        // $("#temp").text("Temp: " + results[i].daily.temp)
-                        // $("#humidity").text("Humidity: " + results[i].daily.humidity)
-                        // $("#wind").text("Wind Speed: " + results[i].daily.wind_speed)
-                        // $("#uv").text("UV: " + results[i].daily.uvi)
-                        var weatherImage = $("<img>");
-                        weatherImage.attr("src", "http://openweathermap.org/img/wn/" + results.daily[i].icon + "@2x.png")
-                        var date = new Date(results.daily[i].dt * 1000)
-                        var dateP= $("<p>").text(date.toLocaleDateString());
-                        var temp= $("<p>").text("Temp: "+results.daily[i].temp.max);
-                        var humidity= $("<p>").text("Humidity: "+results.daily[i].humidity);
-                        var wind= $("<p>").text("Wind: "+results.daily[i].wind);
-                        var uv= $("<p>").text("UV: "+results.daily[i].uvi);
-                        newCard.append(dateP);
-                        newCard.append(temp)
-                        newCard.append(humidity);
-                        newCard.append(wind);
-                        newCard.append(uv);
-                        $("#days").append(newCard);
-                }
-            })
-        }
-    })
+function cardDeck(results) {
+    for (i = 1; i < 6; i++) {
+        var newCard = $("<div>");
+        // $("#temp").text("Temp: " + results[i].daily.temp)
+        // $("#humidity").text("Humidity: " + results[i].daily.humidity)
+        // $("#wind").text("Wind Speed: " + results[i].daily.wind_speed)
+        // $("#uv").text("UV: " + results[i].daily.uvi)
+        var weatherImage = $("<img>");
+        weatherImage.attr("src", "http://openweathermap.org/img/wn/" + results.daily[i].weather[0].icon + "@2x.png")
+        var date = new Date(results.daily[i].dt * 1000)
+        var dateP= $("<p>").text(date.toLocaleDateString());
+        var temp= $("<p>").text("Temp: "+results.daily[i].temp.max);
+        var humidity= $("<p>").text("Humidity: "+results.daily[i].humidity);
+        var wind= $("<p>").text("Wind: "+results.daily[i].wind_speed);
+        var uv= $("<p>").text("UV: "+results.daily[i].uvi);
+        newCard.append(dateP);
+        newCard.append(temp)
+        newCard.append(weatherImage)
+        newCard.append(humidity);
+        newCard.append(wind);
+        newCard.append(uv);
+        $("#days").append(newCard);
+    }
 }
-
 
 function runSearch(city) {
     $.ajax({
@@ -80,7 +66,7 @@ function runSearch(city) {
                     var date = new Date(results.current.dt * 1000)
                     if (city != "Edison") { pastCities.push(city) }
                     addCities()
-                    cardDeck
+                    cardDeck(results)
                     localStorage.setItem("pastCities", JSON.stringify(pastCities))
                     $("#date").text(date.toLocaleDateString())
                     $("#temp").text("Temp: " + results.current.temp)
