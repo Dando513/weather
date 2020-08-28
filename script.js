@@ -1,9 +1,9 @@
 var pastCities = JSON.parse(localStorage.getItem("pastCities")) || ["Edison"]
 
-runSearch(pastCities[0])
+runSearch(pastCities[pastCities.length-1])
 
 $("#searchButton").on("click", function () {
-    var cityInput = $("#city").val()
+    var cityInput = $("#search").val()
     runSearch(cityInput)
  
 })
@@ -20,12 +20,7 @@ function addCities() {
     })
 }
 
-// Create new function with new call
-// perform AJAX call
-// create forloop to run through results 5 times (results.daily.)
-// inside the return create a var for new card
-// create elements for the card
-// than your going to append new card to the $(#days)
+
 
 function cardDeck(results) {
     $("#days").empty()
@@ -67,7 +62,7 @@ function runSearch(city) {
 
                     $("#todayForecast img").attr("src", "http://openweathermap.org/img/wn/" + results.current.weather[0].icon + "@2x.png")
                     var date = new Date(results.current.dt * 1000)
-                    if (city != "Edison") { pastCities.push(city) }
+                    if (pastCities.indexOf(res.name)===-1) { pastCities.push(city) }
                     addCities()
                     cardDeck(results)
                     localStorage.setItem("pastCities", JSON.stringify(pastCities))
